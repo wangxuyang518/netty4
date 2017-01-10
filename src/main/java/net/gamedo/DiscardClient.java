@@ -8,6 +8,9 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 
 import java.net.InetSocketAddress;
 
@@ -28,7 +31,8 @@ public class DiscardClient  {
                         @Override
                         protected void initChannel(SocketChannel ch)
                                 throws Exception {
-                            ch.pipeline().addLast(new DiscardClientHandler());
+                            ch.pipeline().addLast(   new ObjectEncoder(),
+                                    new ObjectDecoder(Integer.MAX_VALUE , ClassResolvers.cacheDisabled(null)),new DiscardClientHandler());
                         }
                     });
             //异步链接服务器 同步等待链接成功
