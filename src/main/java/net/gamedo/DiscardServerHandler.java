@@ -19,6 +19,15 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
 }
 
 
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+        User user=new User();
+        user.setPassword("456");
+        user.setUsername("wang");
+        ctx.writeAndFlush(user);
+
+    }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {

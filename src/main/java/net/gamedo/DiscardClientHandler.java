@@ -17,4 +17,12 @@ public class DiscardClientHandler extends ChannelInboundHandlerAdapter {
         ctx.writeAndFlush(user);
         System.out.println("客户端active");
     }
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        super.channelRead(ctx, msg);
+        User user= (User) msg;
+        System.out.println("服务端发送的数据:"+user.getUsername());
+        System.out.println("服务端发送的数据:"+user.getUsername());
+    }
 }

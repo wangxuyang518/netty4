@@ -59,7 +59,6 @@ public class DiscardServer {
                         }
                     });// 最后绑定I/O事件的处理类
             // 处理网络IO事件
-
             // 服务器启动后 绑定监听端口 同步等待成功 主要用于异步操作的通知回调 回调处理用的ChildChannelHandler
             ChannelFuture f = null;
             try {
